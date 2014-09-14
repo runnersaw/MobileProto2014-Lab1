@@ -3,6 +3,7 @@ package com.myapp.myapplication;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +23,7 @@ public class MyActivity extends Activity {
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new myFragment())
+                    .add(R.id.container, new myFragment(), "myFragment")
                     .commit();
         }
     }
@@ -43,6 +44,10 @@ public class MyActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        }
+        if (id == R.id.reset_text) {
+            myFragment frag = (myFragment) getFragmentManager().findFragmentByTag("myFragment");
+            frag.resetText();
         }
         return super.onOptionsItemSelected(item);
     }

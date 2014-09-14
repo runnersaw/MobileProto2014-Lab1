@@ -17,6 +17,14 @@ public class myFragment extends android.app.Fragment {
     public myFragment() {
     }
 
+    public void resetText() {
+        final ListView myListView = (ListView) getView().findViewById(R.id.listView);
+
+        final ArrayList<String> ar = new ArrayList<String>();
+
+        myListView.setAdapter(new chatAdapter(getActivity(), R.layout.chat_layout, ar));
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -26,7 +34,7 @@ public class myFragment extends android.app.Fragment {
         final ListView myListView = (ListView) rootView.findViewById(R.id.listView);
         final EditText editText = (EditText) rootView.findViewById(R.id.edit_message);
 
-        final ArrayList<String> ar = new ArrayList<String>(Arrays.asList("Hi"));
+        final ArrayList<String> ar = new ArrayList<String>();
 
         myButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
