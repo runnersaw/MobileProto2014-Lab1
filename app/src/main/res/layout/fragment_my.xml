@@ -23,17 +23,21 @@
         android:layout_below="@id/hello_world"/>
 
     <EditText
+        android:id="@+id/username_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/username_message" />
+
+    <EditText
         android:id="@+id/edit_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_message"
-        android:layout_below="@id/listView"/>
+        android:hint="@string/edit_message" />
 
     <Button
         android:text="@string/button_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edit_message"
         android:id="@+id/my_button" />
 
 </LinearLayout>

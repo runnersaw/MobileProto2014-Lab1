@@ -8,5 +8,6 @@
     <string name="alt_text">Hello world!</string>
     <string name="edit_message">Enter a message</string>
     <string name="reset_text">Reset</string>
+    <string name="username_message">Enter a username</string>
 
 </resources>
