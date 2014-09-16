@@ -47,14 +47,14 @@ public class HandlerDatabase {
      * Get
      */
     public ArrayList<chatEntry> getAllEntries(){
-        return sweepCursor(database.query(ModelDatabase.TABLE_NAME, allColumns, "true" + " like '%true%'", null, null, null, null));
+        return sweepCursor(database.query(ModelDatabase.TABLE_NAME, allColumns, null, null, null, null, null));
     }
 
     public ArrayList<chatEntry> getEntriesByUser(String user){
         return sweepCursor(database.query(
                 ModelDatabase.TABLE_NAME,
                 allColumns,
-                ModelDatabase.MESSAGE_USER + " like '%" + user + "%' AND " + "true" + " like '%true%'",
+                ModelDatabase.MESSAGE_USER + " like '%" + user + "%'",
                 null, null, null, null, null
         ));
     }

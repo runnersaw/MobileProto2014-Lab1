@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +17,41 @@ import android.widget.Button;
 
 public class MyActivity extends Activity {
 
+    public String user;
+    public boolean onChat;
+
+    public MyActivity() {
+        this.onChat = false;
+    }
+
+    public void setUser(String username) {
+        this.user = username;
+    }
+
+    public String getUser() {
+        return this.user;
+    }
+
+    public void changeActivityToChat() {
+        Fragment fragment = new myFragment();
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.container, fragment, "myFragment");
+        transaction.commit();
+        this.onChat = true;
+    }
+
+    public void changeActivityToUsername() {
+        Fragment fragment = new usernameFragment();
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.container, fragment, "usernameFragment");
+        transaction.commit();
+        this.onChat = false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +59,7 @@ public class MyActivity extends Activity {
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new myFragment(), "myFragment")
+                    .add(R.id.container, new usernameFragment(), "usernameFragment")
                     .commit();
         }
     }
@@ -45,9 +81,12 @@ public class MyActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if (id == R.id.reset_text) {
+        if (id == R.id.reset_text && this.onChat) {
             myFragment frag = (myFragment) getFragmentManager().findFragmentByTag("myFragment");
             frag.resetText();
+        }
+        if (id == R.id.reset_user && this.onChat) {
+            changeActivityToUsername();
         }
         return super.onOptionsItemSelected(item);
     }
