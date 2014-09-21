@@ -2,10 +2,12 @@ package com.myapp.myapplication;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,14 +44,9 @@ public class MyActivity extends Activity {
         this.onChat = true;
     }
 
-    public void changeActivityToUsername() {
-        Fragment fragment = new usernameFragment();
-
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.container, fragment, "usernameFragment");
-        transaction.commit();
-        this.onChat = false;
+    public void changeUsername() {
+        DialogFragment newFragment = new usernameDialogFragment();
+        newFragment.show(getFragmentManager(), "missiles");
     }
 
     @Override
@@ -86,7 +83,7 @@ public class MyActivity extends Activity {
             frag.resetText();
         }
         if (id == R.id.reset_user && this.onChat) {
-            changeActivityToUsername();
+            changeUsername();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -56,6 +56,7 @@ public class myFragment extends android.app.Fragment {
 
         myButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                String username = ((MyActivity)getActivity()).getUser();
                 textView.setText(R.string.alt_text);
                 String enteredText = editText.getText().toString();
                 if (!enteredText.equals("")) {
